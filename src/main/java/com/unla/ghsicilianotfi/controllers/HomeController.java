@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import helpers.ViewRuteHelper;
+import helpers.ViewRouteHelper;
 
 @Controller
 @RequestMapping("/")
@@ -17,13 +17,13 @@ public class HomeController {
 	//GET exemple: SERVER/index
 	@GetMapping("/index")
 	public String index() {
-		return ViewRuteHelper.INDEX;
+		return ViewRouteHelper.INDEX;
 	}
 	
 	//GET exemple: SERVER/hello?name=someName
 	@GetMapping("/hello")
 	public ModelAndView helloParams1(@RequestParam(name="name", required=false, defaultValue="null") String name) {
-		ModelAndView mV = new ModelAndView(ViewRuteHelper.HELLO);
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
 		mV.addObject("name", name);
 		return mV;
 	}
@@ -31,13 +31,13 @@ public class HomeController {
 	//GET example: SERVER/hello/someName
 	@GetMapping("/hello/{name}")
 	public ModelAndView helloParams2(@PathVariable("name") String name) {
-		ModelAndView mV = new ModelAndView(ViewRuteHelper.HELLO);
+		ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
 		mV.addObject("name", name);
 		return mV;
 	}
 	
 	@GetMapping("/")
 	public RedirectView redirectToHomeIndex() {
-		return new RedirectView(ViewRuteHelper.ROUTE_INDEX);
+		return new RedirectView(ViewRouteHelper.ROUTE_INDEX);
 	}
 }
